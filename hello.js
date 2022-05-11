@@ -1,3 +1,6 @@
+const path = require('path'); 
+
+
 const sayHello = () => {
     console.log('Hello!');
 };
@@ -14,8 +17,15 @@ const sayGoodnight = () => {
 //         title: 'I am Hello Module'
 // };
 
+console.log('dirname', __dirname);
+console.log('filename', __filename);
+console.log(Path.join(__dirname, 'index.js'));
+
 module.exports = {
     sayHello: sayHello,
     sayGoodnight,
         title: 'I am Hello Module'
 };
+
+
+console.log('module', module);
