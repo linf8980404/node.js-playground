@@ -1,1 +1,5 @@
-console.log('Hello World!');
+const hello = require('./hello');
+
+hello.sayHello();   
+
+console.log(hello.title)
