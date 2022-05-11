@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/linf8980404/node.js-playground/issues"
   },
-  "homepage": "https://github.com/linf8980404/node.js-playground#readme"
+  "homepage": "https://github.com/linf8980404/node.js-playground#readme",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }

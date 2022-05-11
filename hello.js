@@ -19,7 +19,7 @@ const sayGoodnight = () => {
 
 console.log('dirname', __dirname);
 console.log('filename', __filename);
-console.log(Path.join(__dirname, 'index.js'));
+console.log(path.join(__dirname, 'index.js'));
 
 module.exports = {
     sayHello: sayHello,
