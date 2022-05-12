@@ -1,58 +1,39 @@
-//內建模組
+// 第一個區塊 內建模組
 const path = require('path');
-
-//第三方模組套件
+// 第二個區塊 第三方模組(套件)
 const express = require('express');
 const bodyParser = require('body-parser');
-
-//自建模組
-
-
-//////////////////////////////////////////////
-
+// 第三個區塊 自建模組
+////////////////////////////////////////////////////////////////
 const app = express();
-
-app.set('view engine', 'ejs');  //使用面板引擎EJS
-app.set('views', 'views');  //資料夾
-
+// middleware
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use((req, res, next) => {
 	console.log('Hello!');
     next();
 });
-
-
-
-app.get((req, res, next) => {
+app.use((req, res, next) => {
 	console.log('World!');
     next();
 });
-
-
-
-
-// app.get('/', (req, res) => {
-//     res.status(200).sendFile(path.join(__dirname, 'views', 'index.html'));
-// });
-
 app.get('/', (req, res) => {
     res.status(200)
         .render('index', {
-            path: '/login',
+            path: '/',
             pageTitle: 'Book Your Books online',
-            products: products
+            products
         });
 });
-
 app.get('/login', (req, res) => {
-    res.status(200).render('login', {
-        path: '/login',
-        pageTitle: 'Login'
-    });
+    res.status(200)
+        .render('login', {
+            path: '/login',
+            pageTitle: 'Login'
+        });
 });
-
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     if (email && password) {
@@ -61,18 +42,15 @@ app.post('/login', (req, res) => {
         console.log('欄位尚未填寫完成！')
     }
 });
-
 app.get('*', (req, res) => {
-    res.status(404).render('404', {
-        pageTitle: 'Page Not Found'
-    });
+    res.status(404)
+        .render('404', {
+            pageTitle: 'Page Not Found'
+        });
 });
-
 app.listen(3000, () => {
 	console.log('Web Server is running on port 3000');
 });
-
-
 const products = [
     {
         title: '四月是你的謊言 1',
