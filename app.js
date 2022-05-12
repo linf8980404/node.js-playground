@@ -30,7 +30,7 @@ app.get((req, res, next) => {
     next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 // app.get('/', (req, res) => {
@@ -38,11 +38,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 app.get('/', (req, res) => {
-    res.status(200).render('index');
+    res.status(200)
+        .render('index', {
+            pageTitle: 'Book Your Books online'
+        });
 });
 
 app.get('/login', (req, res) => {
-    res.status(200).render('login');
+    res.status(200).render('login', {
+        pageTitle: 'Login'
+    });
 });
 
 app.post('/login', (req, res) => {
@@ -55,7 +60,9 @@ app.post('/login', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.status(404).render('404');
+    res.status(404).render('404', {
+        pageTitle: 'Page Not Found'
+    });
 });
 
 app.listen(3000, () => {
