@@ -21,6 +21,9 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'views', 'index.html'));
 });
