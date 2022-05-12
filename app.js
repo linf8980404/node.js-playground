@@ -11,6 +11,10 @@ const bodyParser = require('body-parser');
 //////////////////////////////////////////////
 
 const app = express();
+
+app.set('view engine', 'ejs');  //使用面板引擎EJS
+app.set('views', 'views');  //資料夾
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -29,12 +33,16 @@ app.get((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// app.get('/', (req, res) => {
+//     res.status(200).sendFile(path.join(__dirname, 'views', 'index.html'));
+// });
+
 app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, 'views', 'index.html'));
+    res.status(200).render('index');
 });
 
 app.get('/login', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, 'views', 'login.html'));
+    res.status(200).render('login');
 });
 
 app.post('/login', (req, res) => {
@@ -47,7 +55,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.status(404).render('404');
 });
 
 app.listen(3000, () => {
