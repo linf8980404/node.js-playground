@@ -19,7 +19,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
+
+
+app.get((req, res, next) => {
 	console.log('World!');
     next();
 });
@@ -35,13 +37,6 @@ app.get('/login', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
-// app.post('/login', (req, res) => {
-//     const  { email, password } = req.body;
-//     console.log('Form Data', req.body);
-//     console.log('Form email', req.body);
-//     console.log('Form password', req.body);
-// });
-
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     if (email && password) {
@@ -50,6 +45,11 @@ app.post('/login', (req, res) => {
         console.log('欄位尚未填寫完成！')
     }
 });
+
+app.get('*', (req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+});
+
 app.listen(3000, () => {
 	console.log('Web Server is running on port 3000');
 });
